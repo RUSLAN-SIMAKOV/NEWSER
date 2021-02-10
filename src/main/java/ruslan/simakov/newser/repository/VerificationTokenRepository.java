@@ -1,4 +1,8 @@
 package ruslan.simakov.newser.repository;
 
-public interface VerificationTokenRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface VerificationTokenRepository extends JpaRepository<VerificationTokenRepository, Long> {
 }
