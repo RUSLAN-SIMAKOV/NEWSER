@@ -1,6 +1,7 @@
 package ruslan.simakov.newser.exeption;
 
-public class SpringUserNotFoundException extends X {
-    public SpringUserNotFoundException(String s) {
+public class SpringUserNotFoundException extends RuntimeException {
+    public SpringUserNotFoundException(String ex) {
+        super(ex);
     }
 }

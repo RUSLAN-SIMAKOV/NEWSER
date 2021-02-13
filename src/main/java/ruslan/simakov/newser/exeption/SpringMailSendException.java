@@ -1,6 +1,7 @@
 package ruslan.simakov.newser.exeption;
 
-public class SpringMailSendExeption extends Throwable {
-    public SpringMailSendExeption(String s) {
+public class SpringMailSendException extends RuntimeException {
+    public SpringMailSendException(String ex) {
+        super(ex);
     }
 }

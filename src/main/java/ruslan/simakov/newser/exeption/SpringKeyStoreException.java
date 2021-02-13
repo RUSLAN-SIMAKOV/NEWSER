@@ -1,6 +1,7 @@
 package ruslan.simakov.newser.exeption;
 
-public class SpringKeyStoreException extends Throwable {
-    public SpringKeyStoreException(String s) {
+public class SpringKeyStoreException extends RuntimeException {
+    public SpringKeyStoreException(String ex) {
+        super(ex);
     }
 }

@@ -1,6 +1,9 @@
 package ruslan.simakov.newser.exeption;
 
-public class SpringVerificationTokenException {
-    public SpringVerificationTokenException(String s) {
+import java.util.function.Supplier;
+
+public class SpringVerificationTokenException extends RuntimeException {
+    public SpringVerificationTokenException(String ex) {
+        super(ex);
     }
 }
