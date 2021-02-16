@@ -1,2 +1,14 @@
-package ruslan.simakov.newser.service;public interface AuthService {
+package ruslan.simakov.newser.service;
+
+import ruslan.simakov.newser.dto.AuthenticationResponse;
+import ruslan.simakov.newser.dto.LoginDto;
+import ruslan.simakov.newser.dto.UserDto;
+
+public interface AuthService {
+
+    void signup(UserDto userDto);
+
+    void verifyAccount(String token);
+
+    AuthenticationResponse login(LoginDto loginDto);
 }

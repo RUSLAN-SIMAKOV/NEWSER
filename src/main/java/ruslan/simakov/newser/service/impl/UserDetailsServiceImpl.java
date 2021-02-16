@@ -1,4 +1,4 @@
-package ruslan.simakov.newser.service;
+package ruslan.simakov.newser.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

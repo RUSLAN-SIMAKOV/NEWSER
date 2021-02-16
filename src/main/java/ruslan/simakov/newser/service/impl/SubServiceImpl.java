@@ -1,4 +1,4 @@
-package ruslan.simakov.newser.service;
+package ruslan.simakov.newser.service.impl;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +9,7 @@ import ruslan.simakov.newser.exeption.SpringSubNotFondException;
 import ruslan.simakov.newser.mapper.SubMapper;
 import ruslan.simakov.newser.model.Sub;
 import ruslan.simakov.newser.repository.SubRepository;
+import ruslan.simakov.newser.service.SubService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 @Slf4j
-public class SubService {
+public class SubServiceImpl implements SubService {
 
     private final SubRepository subRepository;
     private final SubMapper subMapper;

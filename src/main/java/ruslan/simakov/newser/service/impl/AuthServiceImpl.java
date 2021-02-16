@@ -19,13 +19,15 @@ import ruslan.simakov.newser.model.VerificationToken;
 import ruslan.simakov.newser.repository.UserRepository;
 import ruslan.simakov.newser.repository.VerificationTokenRepository;
 import ruslan.simakov.newser.security.JwtProvider;
+import ruslan.simakov.newser.service.AuthService;
+import ruslan.simakov.newser.service.MailService;
 
 import java.time.Instant;
 import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-public class AuthService {
+public class AuthServiceImpl implements AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;

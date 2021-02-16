@@ -31,7 +31,7 @@ public class SubController {
 
     @GetMapping
     public ResponseEntity<List<SubDto>> getAllSub() {
-        return ResponseEntity.status(HttpStatus.CREATED)
+        return ResponseEntity.status(HttpStatus.FOUND)
                 .body(subService.getAll());
 
     }

@@ -10,11 +10,12 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import ruslan.simakov.newser.exeption.SpringMailSendException;
 import ruslan.simakov.newser.model.NotificationEmail;
+import ruslan.simakov.newser.service.MailService;
 
 @Service
 @AllArgsConstructor
 @Slf4j
-public class MailService {
+public class MailServiceImpl implements MailService {
 
     private final JavaMailSender javaMailSender;
     private final MailContentBuilder mailContentBuilder;

@@ -13,6 +13,7 @@ import ruslan.simakov.newser.dto.AuthenticationResponse;
 import ruslan.simakov.newser.dto.LoginDto;
 import ruslan.simakov.newser.dto.UserDto;
 import ruslan.simakov.newser.service.AuthService;
+import ruslan.simakov.newser.service.impl.AuthServiceImpl;
 
 @AllArgsConstructor
 @RestController
