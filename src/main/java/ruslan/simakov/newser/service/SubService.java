@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ruslan.simakov.newser.dto.SubDto;
+import ruslan.simakov.newser.exeption.SpringSubNotFondException;
+import ruslan.simakov.newser.mapper.SubMapper;
 import ruslan.simakov.newser.model.Sub;
 import ruslan.simakov.newser.repository.SubRepository;
 
@@ -17,10 +19,11 @@ import java.util.stream.Collectors;
 public class SubService {
 
     private final SubRepository subRepository;
+    private final SubMapper subMapper;
 
     @Transactional
     public SubDto save(SubDto subDto) {
-        Sub sub = subRepository.save(mapSubDto(subDto));
+        Sub sub = subRepository.save(subMapper.mapDtoToSub(subDto));
         subDto.setId(sub.getId());
         return subDto;
     }
@@ -29,18 +32,13 @@ public class SubService {
     public List<SubDto> getAll() {
         return subRepository.findAll()
                 .stream()
-                .map(this :: mapToDto)
+                .map(subMapper :: mapSubToDto)
                 .collect(Collectors.toList());
     }
 
-    private SubDto mapToDto(Sub sub) {
-        return SubDto.builder().name(sub.getName())
-                .description(sub.getDescription()).build();
-    }
-
-    private Sub mapSubDto(SubDto subDto) {
-        return Sub.builder().name(subDto.getName())
-                .description(subDto.getDescription())
-                .build();
+    public SubDto getSub(Long id) {
+        Sub sub = subRepository.findById(id)
+                .orElseThrow(() -> new SpringSubNotFondException("Sub not found with id: " + id));
+        return subMapper.mapSubToDto(sub);
     }
 }
