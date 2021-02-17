@@ -10,11 +10,11 @@ import ruslan.simakov.newser.model.User;
 @Mapper(componentModel = "spring")
 public interface PostMapper {
 
-    @Mapping(target = "createDate", source = "java(java.time.Instant.now())")
-    @Mapping(target = "description", source = "description")
+    @Mapping(target = "createdDate", expression = "java(java.time.Instant.now())")
+    @Mapping(target = "description", source = "postDto.description")
     Post mapDtoToPost(PostDto postDto, User user, Sub sub);
 
     @Mapping(target = "subName", source = "sub.name")
-    @Mapping(target = "userName", source = "user.name")
+    @Mapping(target = "userName", source = "user.userName")
     PostDto mapPostToDto(Post post);
 }

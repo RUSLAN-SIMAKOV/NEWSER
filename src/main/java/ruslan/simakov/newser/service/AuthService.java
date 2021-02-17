@@ -3,6 +3,7 @@ package ruslan.simakov.newser.service;
 import ruslan.simakov.newser.dto.AuthenticationResponse;
 import ruslan.simakov.newser.dto.LoginDto;
 import ruslan.simakov.newser.dto.UserDto;
+import ruslan.simakov.newser.model.User;
 
 public interface AuthService {
 
@@ -11,4 +12,6 @@ public interface AuthService {
     void verifyAccount(String token);
 
     AuthenticationResponse login(LoginDto loginDto);
+
+    User getCurrentUser();
 }

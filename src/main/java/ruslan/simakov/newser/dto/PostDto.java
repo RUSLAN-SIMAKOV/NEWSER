@@ -13,4 +13,5 @@ public class PostDto {
     private String url;
     private String description;
     private String subName;
+    private String userName;
 }

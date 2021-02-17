@@ -36,6 +36,7 @@ public class AuthServiceImpl implements AuthService {
     private final AuthenticationManager authenticationManager;
     private final JwtProvider jwtProvider;
 
+    @Override
     @Transactional
     public void signup(UserDto userDto) {
         User user = saveUser(userDto);
@@ -62,6 +63,7 @@ public class AuthServiceImpl implements AuthService {
         return userRepository.save(user);
     }
 
+    @Override
     public void verifyAccount(String token) {
         VerificationToken verificationToken = verificationTokenRepository.findByToken(token)
                 .orElseThrow(() -> new SpringVerificationTokenException("Can't verify user with token: " + token));
@@ -75,7 +77,7 @@ public class AuthServiceImpl implements AuthService {
         userFromDb.setEnabled(true);
         userRepository.save(userFromDb);
     }
-
+    @Override
     public AuthenticationResponse login(LoginDto loginDto) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 loginDto.getUsername(),
@@ -83,5 +85,10 @@ public class AuthServiceImpl implements AuthService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtProvider.generateToken(authentication);
         return new AuthenticationResponse(token, loginDto.getUsername());
+    }
+
+    @Override
+    public User getCurrentUser() {
+        return null;
     }
 }

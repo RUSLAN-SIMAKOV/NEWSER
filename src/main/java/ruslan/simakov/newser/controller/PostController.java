@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ruslan.simakov.newser.dto.PostDto;
-import ruslan.simakov.newser.dto.SubDto;
 import ruslan.simakov.newser.service.PostService;
 
 import java.util.List;
@@ -42,14 +41,14 @@ public class PostController {
     }
 
     @GetMapping("/getbysub/{id}")
-    public ResponseEntity<PostDto> getPostBySub(@PathVariable Long id) {
+    public ResponseEntity<List<PostDto>> getPostsBySub(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.FOUND)
-                .body(postService.getPostBySub(id));
+                .body(postService.getPostsBySub(id));
     }
 
     @GetMapping("/getbyuser/{name}")
-    public ResponseEntity<PostDto> getPostByUser(@PathVariable String name) {
+    public ResponseEntity<List<PostDto>> getPostByUser(@PathVariable String name) {
         return ResponseEntity.status(HttpStatus.FOUND)
-                .body(postService.getPostByUser(name));
+                .body(postService.getPostsByUser(name));
     }
 }
