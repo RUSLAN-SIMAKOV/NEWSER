@@ -12,6 +12,8 @@ public interface PostMapper {
 
     @Mapping(target = "createdDate", expression = "java(java.time.Instant.now())")
     @Mapping(target = "description", source = "postDto.description")
+    @Mapping(target = "user", source = "user")
+    @Mapping(target = "sub", source = "sub")
     Post mapDtoToPost(PostDto postDto, User user, Sub sub);
 
     @Mapping(target = "subName", source = "sub.name")

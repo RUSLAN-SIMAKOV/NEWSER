@@ -89,6 +89,9 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public User getCurrentUser() {
-        return null;
+        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByUserName(userName)
+                .orElseThrow(() -> new SpringUserNotFoundException("User not found with name: " + userName));
+        return user;
     }
 }
