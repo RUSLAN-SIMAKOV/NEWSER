@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ruslan.simakov.newser.dto.AuthenticationResponse;
 import ruslan.simakov.newser.dto.LoginDto;
+import ruslan.simakov.newser.dto.RefreshTokenRequest;
 import ruslan.simakov.newser.dto.UserDto;
 import ruslan.simakov.newser.service.AuthService;
-import ruslan.simakov.newser.service.impl.AuthServiceImpl;
+
+import javax.validation.Valid;
 
 @AllArgsConstructor
 @RestController
@@ -29,7 +31,7 @@ public class AuthController {
     }
 
     @GetMapping("/accountVerification/{token}")
-    public ResponseEntity<String>verifyAccount(@PathVariable String token){
+    public ResponseEntity<String> verifyAccount(@PathVariable String token) {
         authService.verifyAccount(token);
         return new ResponseEntity<>("Account verification successful", HttpStatus.OK);
     }
@@ -38,5 +40,10 @@ public class AuthController {
     public AuthenticationResponse login(@RequestBody LoginDto loginDto) {
         AuthenticationResponse authenticationResponse = authService.login(loginDto);
         return authenticationResponse;
+    }
+
+    @PostMapping("/refresh/token")
+    public AuthenticationResponse refreshToken(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest) {
+        return authService.refreshToken(refreshTokenRequest);
     }
 }

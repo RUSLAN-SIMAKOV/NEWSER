@@ -9,13 +9,13 @@ import ruslan.simakov.newser.model.Vote;
 @Mapper(componentModel = "spring")
 public interface VoteMapper {
 
-    @Mapping(target = "voteType", source = "voteType")
+    @Mapping(target = "voteType", source = "voteDto.voteType")
     @Mapping(target = "post", source = "post")
     Vote mapToVote(VoteDto voteDto, Post post);
 
-    @Mapping(target = "voteId", ignore = true)
+//    @Mapping(target = "voteId", ignore = true)
     @Mapping(target = "voteType", source = "voteType")
-    @Mapping(target = "postId", source = "post.id")
+    @Mapping(target = "postId", source = "post.postId")
     VoteDto mapToDto(Vote vote);
 
 //    private Long voteId;

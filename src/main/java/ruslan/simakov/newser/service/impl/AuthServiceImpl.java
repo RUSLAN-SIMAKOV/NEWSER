@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ruslan.simakov.newser.dto.AuthenticationResponse;
 import ruslan.simakov.newser.dto.LoginDto;
+import ruslan.simakov.newser.dto.RefreshTokenRequest;
 import ruslan.simakov.newser.dto.UserDto;
 import ruslan.simakov.newser.exeption.SpringUserNotFoundException;
 import ruslan.simakov.newser.exeption.SpringVerificationTokenException;
@@ -93,5 +94,11 @@ public class AuthServiceImpl implements AuthService {
         User user = userRepository.findByUserName(userName)
                 .orElseThrow(() -> new SpringUserNotFoundException("User not found with name: " + userName));
         return user;
+    }
+
+    @Override
+    public AuthenticationResponse refreshToken(RefreshTokenRequest refreshTokenRequest) {
+        User user = getCurrentUser();
+        return new AuthenticationResponse("", null);
     }
 }

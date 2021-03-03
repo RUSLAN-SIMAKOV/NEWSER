@@ -2,6 +2,7 @@ package ruslan.simakov.newser.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,8 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
+import java.time.Instant;
+import java.util.Date;
 
 import static io.jsonwebtoken.Jwts.parser;
 
@@ -24,6 +27,9 @@ import static io.jsonwebtoken.Jwts.parser;
 public class JwtProvider {
 
     private KeyStore keyStore;
+
+    @Value("${jwt.expiration.time}")
+    private Long jwtExpirationInMilis;
 
     @PostConstruct
     public void init() {
@@ -41,6 +47,7 @@ public class JwtProvider {
         return Jwts.builder()
                 .setSubject(principal.getUsername())
                 .signWith(getPrivateKey())
+                .setExpiration(Date.from(Instant.now().plusMillis(jwtExpirationInMilis)))
                 .compact();
     }
 
